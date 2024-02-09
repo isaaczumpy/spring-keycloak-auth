@@ -22,16 +22,16 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./docker/keycloak/realms:/tmp/real ms
-    #    command:
-    #      - "-Dkeycloak.migration.action=import"
-    #      - "-Dkeycloak.migration.provider=singleFile"
-    #      - "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
-    #      - "-Dkeycloak.migration.file=/tmp/realms/realms-settings.json"
-    # entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
-    command: start-dev
+#      - ./docker/keycloak/realms:/tmp/realms
+      - ./src/test/resources:/tmp/realms
+    command:
+      - "-Dkeycloak.migration.action=import"
+      - "-Dkeycloak.migration.provider=singleFile"
+      - "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING"
+      - "-Dkeycloak.migration.file=/tmp/realms/realm-import.json"
+    entrypoint: ["/opt/keycloak/bin/kc.sh", "start-dev"]
     ports:
-      - "8083:8080"
+      - "8180:8080"
     restart: always
     depends_on:
       - postgres
