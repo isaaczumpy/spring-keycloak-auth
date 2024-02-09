@@ -33,6 +33,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class);
+//        http
+//                .authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
+//                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+//                .addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class);
         return http.build();
     }
 

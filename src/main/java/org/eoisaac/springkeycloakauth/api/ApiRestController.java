@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 
 @Slf4j
 @RestController
-//@RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApiRestController {
 
     @GetMapping("/")
