@@ -14,24 +14,18 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(
+//        produces = MediaType.APPLICATION_JSON_VALUE
+)
 public class ApiRestController {
 
-    public Map<String, Object> getResponse(Jwt jwt) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", String.format("Hello, %s!", jwt.getClaimAsString("preferred_username")));
-        response.put("jwt", jwt);
-        return response;
-    }
-
     @GetMapping("/")
-    public Map<String, Object> index(@AuthenticationPrincipal Jwt jwt) {
-        return getResponse(jwt);
+    public String index(@AuthenticationPrincipal Jwt jwt) {
+        return String.format("Hello, %s!", jwt.getClaimAsString("preferred_username"));
     }
 
     @GetMapping("/protected/premium")
-    public Map<String, Object> premium(@AuthenticationPrincipal Jwt jwt) {
-        return getResponse(jwt);
+    public String premium(@AuthenticationPrincipal Jwt jwt) {
+        return String.format("Hello, %s!", jwt.getClaimAsString("preferred_username"));
     }
-
 }
